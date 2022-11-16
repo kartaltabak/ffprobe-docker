@@ -12,7 +12,7 @@ pipeline {
         stage('Build & Push') {
             steps {
                 script {
-                    sh 'docker pull linuxserver/ffprobe:latest'
+                    sh 'docker pull kartaltabak/ffmpeg:latest'
                     docker.withRegistry('https://registry-1.docker.io', 'Dockerhub-kartaltabak') {
                         def repoName = "kartaltabak/ffprobe"
                         def taggedName = repoName + ":" + tag
