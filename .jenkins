@@ -13,13 +13,12 @@ pipeline {
             steps {
                 script {
                     sh 'docker pull kartaltabak/ffmpeg:latest'
-                    sh 'ls -alF'
                     docker.withRegistry('https://registry-1.docker.io', 'Dockerhub-kartaltabak') {
                         def repoName = "kartaltabak/ffprobe"
                         def taggedName = repoName + ":" + tag
                         def image = docker.build(taggedName, "docker")
 
-                        sh 'docker run --rm kartaltabak/ffprobe:latest -version'
+                        sh "docker run --rm ${taggedName} -version"
 
                         image.push()
 
